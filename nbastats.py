@@ -21,10 +21,11 @@ masterdf = pd.DataFrame(columns = ["GAME_ID", "LEAD_CHANGES", "TEAM_ABBRV", "GAM
 counter = 0
 
 print(len(gameidlist))
-time.sleep(60)
+time.sleep(10)
 
 for i in gameidlist:
     lead_changes = list(boxscoresummaryv2.BoxScoreSummaryV2(i).other_stats.get_data_frame()[["LEAD_CHANGES", "TEAM_ABBREVIATION"]].iloc[0,:])
+    time.sleep(10)
     lead_changes_date = list(boxscoresummaryv2.BoxScoreSummaryV2(i).game_info.get_data_frame()["GAME_DATE"])
     masterlist = [0,0,0,0]
     masterlist[0] = i
@@ -35,6 +36,6 @@ for i in gameidlist:
     masterdf.loc[counter] = masterlist
     print(masterdf)
     counter += 1
-    time.sleep(60)
+    time.sleep(10)
 
 masterdf.to_csv("nbaleadchange.csv")
